@@ -1,0 +1,78 @@
+POST http://localhost:3000/v1/auth/register
+content-type: application/json
+
+# {
+#     "name": "Sutripta Roy",
+#     "email": "sutriptaroy@gmail.com",
+#     "password": "topsecret1"
+# }
+
+# {
+#     "name": "Sutripta Roy Official",
+#     "email": "sutriptaroywork@gmail.com",
+#     "password": "topsecret1"
+# }
+
+{
+    "name": "Sutripta Roy Official",
+    "email": "sutriptaroywork@yopmail.com",
+    "password": "topsecret1"
+}
+
+# {
+#     "name": "Piyali Mondal",
+#     "email": "piyalimondal432@gmail.com",
+#     "password": "topsecret1"
+# }
+
+# {
+#     "name": "Peter Vaughan",
+#     "email": "peter_vaughan@gameofthron.es",
+#     "password": "topsecret1"
+# }
+
+###
+
+POST http://localhost:3000/v1/auth/login
+content-type: application/json
+
+{
+    "email": "sutriptaroy@gmail.com",
+    "password": "topsecret11"
+}
+
+###
+
+POST http://localhost:3000/v1/auth/change-password
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzFkMWY3YzJlNDc3M2VkODQzN2Y0MDkiLCJpYXQiOjE3MzAwMjU5MDcsImV4cCI6MTczMDExMjMwN30.xtHUuo0jVp6DonjRfNZSEOoHnPwiFTk8OycInGBu4nY
+
+{
+    "password": "topsecret11",
+    "newPassword": "topsecret1"
+}
+
+###
+
+POST http://localhost:3000/v1/auth/forgot-password
+content-type: application/json
+
+{
+    "email": "sutriptaroy@gmail.com"
+}
+
+###
+
+POST http://localhost:3000/v1/auth/reset-password
+content-type: application/json
+
+{
+    "token": "b740b3bb-52d1-4277-ac6b-476755a595be",
+    "newPassword": "topsecret11"
+}
+
+###
+
+GET http://localhost:3000/v1/users
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzFkMWY3YzJlNDc3M2VkODQzN2Y0MDkiLCJpYXQiOjE3MzAwNDgwNDIsImV4cCI6MTczMDEzNDQ0Mn0.0riJG62gPm9whs8KLNyJE-qgrpjUrmNzNkrG9s7YA38
