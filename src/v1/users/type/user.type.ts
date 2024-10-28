@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
 
-export type UserDetails = {
-    name: string;
-    email: string;
+import { FinalResponse } from "src/dto/common.dto";
+
+export type UserDetails = FinalResponse & {
+    data: {
+        name: string;
+        email: string;
+    }
 }
 
 export type UserDBDetails = {

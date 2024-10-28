@@ -2,6 +2,7 @@ import { Controller, Get, HttpCode, HttpStatus, NotFoundException, Request, UseG
 
 import { AuthGurad } from 'src/gurads/auth.guard';
 import { UsersService } from './users.service';
+import { UserDetails } from './type/user.type';
 
 @UseGuards(AuthGurad)
 @Controller({ path: 'users', version: '1' })
@@ -11,7 +12,7 @@ export class UsersController {
     
     @HttpCode(HttpStatus.OK)
     @Get()
-    async getUserDetails(@Request() request) {
+    async getUserDetails(@Request() request): Promise<UserDetails> {
         const userDetails = await this.userService.getById(request.user.userId)
 
         if (!userDetails) {
@@ -19,8 +20,11 @@ export class UsersController {
         }
 
         return {
-            name: userDetails.name,
-            email: userDetails.email
+            message: 'User Details Fetched',
+            data: {
+                name: userDetails.name,
+                email: userDetails.email
+            }
         }
     }
 }

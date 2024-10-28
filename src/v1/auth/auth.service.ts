@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 
 import { UsersService } from 'src/v1/users/users.service';
 import { LoginPaylodDto, changePasswordDto, RegisterPayloadDto, forgotPasswordDto, resetPasswordDto } from './dto/auth.dto';
-import { LoginResponse, ResetTokenType } from './type/auth.type';
+import { LoginResponse, ResetTokenType, TokenResponse } from './type/auth.type';
 import { FinalResponse, SendMail } from 'src/dto/common.dto';
 import { ResetToken } from 'src/schemas/resetToken.schema';
 import { MailService } from 'src/service/mail.service';
@@ -53,7 +53,11 @@ export class AuthService {
 
     async authenticate(input: LoginPaylodDto): Promise<LoginResponse>{
         const userId: string = await this.validateUser(input)
-        return this.generateToken(userId)
+        const accessTokenPayload = await this.generateToken(userId)
+        return {
+            message: 'Successfylly Logged In',
+            data: accessTokenPayload
+        }
     }
 
     async validateUser(input: LoginPaylodDto): Promise<string> {
@@ -73,7 +77,7 @@ export class AuthService {
         return userDetails._id.toString()
     }
 
-    async generateToken(userId: string): Promise<LoginResponse> {
+    async generateToken(userId: string): Promise<TokenResponse> {
         const tokenPayload = {
             sub: userId,
         }
